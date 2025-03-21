@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7e8teje2xnah"]
+
+[ext_resource type="Texture2D" uid="uid://63okcsj5evs4" path="res://Assets/Sprites/windowsxp.png" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://b16yfa88580b8" path="res://Scripts/popups.gd" id="2_8gbba"]
+[ext_resource type="Texture2D" uid="uid://5co171ndivxa" path="res://Assets/Sprites/godotIcon.svg" id="3_jjvhh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kry3j"]
+size = Vector2(30.582, 25.2869)
+
+[node name="Main" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+color = Color(0, 0, 0, 1)
+
+[node name="xpScreen" type="Sprite2D" parent="Background"]
+position = Vector2(960, 540)
+scale = Vector2(2.25, 2.25)
+texture = ExtResource("1_jjgbg")
+
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="Popups" type="Node2D" parent="."]
+
+[node name="BananaVirus" type="Sprite2D" parent="Popups"]
+position = Vector2(58, 58)
+scale = Vector2(1.90625, 1.90625)
+texture = ExtResource("3_jjvhh")
+script = ExtResource("2_8gbba")
+
+[node name="Area2D" type="Area2D" parent="Popups/BananaVirus"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Popups/BananaVirus/Area2D"]
+position = Vector2(47.291, -50.4139)
+shape = SubResource("RectangleShape2D_kry3j")
+
+[connection signal="mouse_entered" from="Popups/BananaVirus/Area2D" to="Popups/BananaVirus" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Popups/BananaVirus/Area2D" to="Popups/BananaVirus" method="_on_area_2d_mouse_exited"]
